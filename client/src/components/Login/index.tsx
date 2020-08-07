@@ -4,6 +4,7 @@ import React, {
     MouseEvent,
     useState,
 } from 'react';
+import { Link } from 'react-router-dom';
 
 // Style
 import Style from './_index.scss';
@@ -79,9 +80,9 @@ const Login: FunctionComponent = () => {
                 <input type='checkbox' />
                 <p className={Style.remember_text}>Duy trì đăng nhập</p>
             </div>
-            <a className={Style.signup} href='/signup'>
+            <Link className={Style.signup} to='/signup'>
                 Đăng Ký
-            </a>
+            </Link>
         </div>
     );
 };
