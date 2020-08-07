@@ -11,11 +11,6 @@ import Style from './_index.scss';
 // Helper
 import validation from '../../helpers/validationLogin';
 
-interface Data {
-    user: string;
-    pass: string;
-}
-
 const Login: FunctionComponent = () => {
     // State
     const [user, setUser] = useState(null);
@@ -49,15 +44,7 @@ const Login: FunctionComponent = () => {
                 pass: ${pass}
                 error: ${error}
             `,
-        ); // Remove Production
-        // TODO: Write Fetch API Post Login And Logic
-        // fetch('/login', {
-        //     method: 'POST',
-        //     headers: {
-        //         'Content-Type': 'application/json',
-        //     },
-        //     body: JSON.stringify({ user: user, pass: pass } as Data),
-        // });
+        );
     };
 
     return (
