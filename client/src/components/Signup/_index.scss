@@ -1,0 +1,80 @@
+@import '../../scss/style';
+
+.signup {
+    @include box(100%);
+
+    @include flex(center, center, column);
+}
+
+.text {
+    color: var(--color-blue-green);
+    font-size: var(--font-size-large);
+}
+
+.title {
+    color: var(--color-navy-blue);
+    font-size: var(--font-size-largest);
+}
+
+.input {
+    width: 25%;
+    margin: $range-one 0;
+    padding: $range-two $range-four;
+
+    border: 1px solid var(--color-sky-blue-crayola);
+    border-radius: 5px;
+    box-shadow: 0 0 1px;
+
+    font-size: var(--font-size-normal);
+
+    transition: all 0.3s;
+
+    &:focus {
+        outline: none;
+        box-shadow: 0 0 4px;
+    }
+}
+
+.summit {
+    margin: $range-three 0;
+    padding: $range-one $range-two;
+    border: none;
+    cursor: pointer;
+
+    color: var(--color-cerulean-crayola);
+    background-color: transparent;
+
+    font-size: var(--font-size-larger);
+    font-weight: bold;
+
+    transition: all 0.3s;
+
+    &:focus {
+        outline: none;
+    }
+
+    &:hover {
+        color: var(--color-blue-green);
+    }
+}
+
+.login {
+    margin: 2rem;
+
+    color: var(--color-navy-blue);
+
+    font-size: var(--font-size-largest);
+    text-decoration: none;
+}
+
+.error {
+    margin: $range-two 0;
+    padding: $range-one $range-two;
+    border-radius: 4px;
+
+    color: var(--color-powder-blue);
+    background-color: var(--color-navy-blue);
+
+    font-size: var(--font-size-large);
+    font-weight: bold;
+}
