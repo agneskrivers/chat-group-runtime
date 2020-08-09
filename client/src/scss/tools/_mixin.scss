@@ -3,9 +3,19 @@
     height: $height;
 }
 
-@mixin flex($justify: flex-start, $align: flex-start, $direction: row) {
+@mixin flex($justify, $align, $direction: row) {
     display: flex;
     flex-direction: $direction;
-    justify-content: $justify;
-    align-items: $align;
+    
+    @if $justify {
+        justify-content: $justify;
+    } @else {
+        justify-content: flex-start;
+    }
+
+    @if $align {
+        align-items: $align;
+    } @else {
+        align-items: flex-start;
+    }
 }
