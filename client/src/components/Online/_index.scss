@@ -1,0 +1,92 @@
+@import '../../scss/style';
+
+.online {
+    @include box(100%, 90%);
+    padding: 1.5rem 0;
+    border-top: 1px solid var(--color-sky-blue-crayola);
+}
+
+.search {
+    @include box(100%, 10%);
+    margin-bottom: 1.5rem;
+
+    @include flex(center, center);
+
+    position: relative;
+    text-align: center;
+
+    & svg {
+        @include box(2rem);
+
+        position: absolute;
+        left: 15%;
+
+        fill: var(--color-sky-blue);
+    }
+
+    &_text {
+        width: 80%;
+        padding: 1rem 6rem;
+        border: 1px solid var(--color-blue-green);
+        border-radius: 30px;
+
+        font-size: var(--font-size-normal);
+
+        transition: all .3s;
+
+        &:focus {
+            outline: none;
+            box-shadow: 0 0 2px;
+        }
+    }
+}
+
+.users {
+    @include box(100%, 90%);
+
+    overflow: scroll;
+    overflow-y: hidden;
+    overflow-x: hidden;
+}
+
+.user {
+    @include box(100%, 15%);
+    padding: 0rem 2rem;
+    border-top: 1px solid var(--color-cerulean-crayola);
+    border-bottom: 1px solid var(--color-blue-green);
+
+    @include flex(null, center);
+
+    position: relative;
+    cursor: pointer;
+
+    &:nth-child(1) {
+        border-top: 1px solid var(--color-blue-green);
+    }
+}
+
+.avatar {
+    @include box(4.5rem);
+    border-radius: 50%;
+
+    background: red;
+    background-position: center;
+    background-size: cover;
+}
+
+.name {
+    margin: 0 1.5rem;
+
+    font-size: var(--font-size-large);
+    font-weight: 500;
+}
+
+.active {
+    @include box(1.5rem);
+    border-radius: 50%;
+
+    background-color: #7fff45;
+
+    position: absolute;
+    right: 10%;
+}
