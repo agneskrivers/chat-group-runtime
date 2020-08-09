@@ -19,7 +19,8 @@ module.exports = {
         minimizer: [new TerserPlugin(), new OptimizeCSSAssetsPlugin({})],
     },
     module: {
-        rules: [{
+        rules: [
+            {
                 test: /\.ts(x?)$/,
                 exclude: /node_modules/,
                 use: ['ts-loader', 'eslint-loader'],
@@ -38,6 +39,14 @@ module.exports = {
                     },
                     'sass-loader',
                 ],
+            },
+            {
+                test: /\.svg$/,
+                use: 'svg-react-loader',
+            },
+            {
+                test: /\.(ttf|eot|svg|woff(2)?)(\?[a-z0-9=&.]+)?$/,
+                loader: 'file-loader',
             },
         ],
     },
