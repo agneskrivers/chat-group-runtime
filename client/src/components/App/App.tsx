@@ -7,7 +7,7 @@ import Signup from '../Signup/index';
 import Home from '../Home/index';
 
 const App: FunctionComponent = () => {
-    const [isLogin, setIsLogin] = useState(true);
+    const [isLogin, setIsLogin] = useState(false);
     const [user, setUsers] = useState(null);
 
     return (
