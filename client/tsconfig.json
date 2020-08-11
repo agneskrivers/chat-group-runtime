@@ -6,7 +6,7 @@
         "outDir": "./build/",
         "preserveConstEnums": true,
         "removeComments": true,
-        "sourceMap": true,
+        "sourceMap": false,
         "target": "es5",
         "esModuleInterop": true
     },
