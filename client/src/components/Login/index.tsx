@@ -12,11 +12,21 @@ import Style from './_index.scss';
 // Helper
 import validation from '../../helpers/validationLogin';
 
-const Login: FunctionComponent = () => {
+// Interface
+interface Props {
+    handleLogin: (user: string, pass: string, keep: boolean) => Promise<void>;
+    error: string;
+}
+
+const Login: FunctionComponent<Props> = (props: Props) => {
+    // Props
+    const { handleLogin, error } = props;
+
     // State
     const [user, setUser] = useState(null);
     const [pass, setPass] = useState(null);
-    const [error, setError] = useState([]);
+    const [keep, setKeep] = useState(false);
+    const [errorValidation, setErrorValidation] = useState([]);
 
     // Handle Event
     const handleChangeUser = (e: ChangeEvent<HTMLInputElement>): void => {
@@ -35,28 +45,26 @@ const Login: FunctionComponent = () => {
         const errorNew: string[] = validation(user, pass);
 
         if (errorNew.length !== 0) {
-            setError(errorNew);
+            setErrorValidation(errorNew);
             return;
         }
 
-        console.log(
-            `
-                user: ${user}
-                pass: ${pass}
-                error: ${error}
-            `,
-        );
+        handleLogin(user, pass, keep);
+    };
+    const handleClickKeep = (): void => {
+        setKeep(!keep);
     };
 
     return (
         <div className={Style.login}>
             <h1 className={Style.title}>Chat Group Runtime</h1>
-            {error &&
-                error.map((item, index) => (
+            {errorValidation &&
+                errorValidation.map((item, index) => (
                     <div className={Style.error} key={index}>
                         {item}
                     </div>
                 ))}
+            {error && <div className={Style.error}>{error}</div>}
             <h3 className={Style.description}>
                 Liên hệ ngay với mọi người trong cuộc sống
             </h3>
@@ -77,7 +85,7 @@ const Login: FunctionComponent = () => {
                 Tiếp Tục
             </button>
             <div className={Style.remember}>
-                <input type='checkbox' />
+                <input type='checkbox' onClick={handleClickKeep} />
                 <p className={Style.remember_text}>Duy trì đăng nhập</p>
             </div>
             <Link className={Style.signup} to='/signup'>
