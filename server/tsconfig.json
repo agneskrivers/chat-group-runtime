@@ -1,0 +1,11 @@
+{
+  "compilerOptions": {
+    "target": "ES2015",
+    "module": "commonjs", // "declarationMap": true,                /* Generates a sourcemap for each corresponding '.d.ts' file. */
+    "outDir": "./build", // "composite": true,                     /* Enable project compilation */    // "importHelpers": true,                 /* Import emit helpers from 'tslib'. */
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true
+  }
+}
