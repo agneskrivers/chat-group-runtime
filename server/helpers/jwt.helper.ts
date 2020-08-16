@@ -4,6 +4,7 @@ interface UserInterface {
     id: string;
     fullName: string;
     user: string;
+    avatar: string;
     isAdmin: boolean;
 }
 
@@ -27,6 +28,7 @@ export const generateToken: generateTokeInterface = (
             id: user.id,
             fullName: user.fullName,
             user: user.user,
+            avatar: user.avatar,
             isAdmin: user.isAdmin,
         };
 
