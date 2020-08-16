@@ -67,6 +67,10 @@
     transition: all .3s;
     cursor: not-allowed;
 
+    &:focus {
+        outline: none;
+    }
+
     &_active {
         color: var(--color-blue-green);
         cursor: pointer;
