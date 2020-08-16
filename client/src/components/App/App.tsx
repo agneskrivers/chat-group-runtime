@@ -93,8 +93,19 @@ const App: FunctionComponent = () => {
         }
     };
 
+    // Handle Logout Function
+    const hanldeLogout = (): void => {
+        setIsLogin(false);
+        setUser(null);
+        localStorage.removeItem('token');
+    };
+
     return (
-        <Provider value={user}>
+        <Provider
+            value={{
+                ...user,
+                logout: hanldeLogout,
+            }}>
             <Router>
                 <Switch>
                     <Route path='/signup'>
