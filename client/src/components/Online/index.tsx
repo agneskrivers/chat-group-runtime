@@ -6,7 +6,19 @@ import SearchSVG from '../SVGs/Search/index';
 // Style
 import Style from './_index.scss';
 
-const Online: FunctionComponent = () => {
+interface Props {
+    users: UserInterface[];
+    idUser: string;
+}
+interface UserInterface {
+    id: string;
+    avatar: string;
+    fullName: string;
+}
+
+const Online: FunctionComponent<Props> = (props: Props) => {
+    const { users, idUser } = props;
+
     return (
         <div className={Style.online}>
             <div className={Style.search}>
@@ -18,11 +30,32 @@ const Online: FunctionComponent = () => {
                 <SearchSVG />
             </div>
             <div className={Style.users}>
-                <div className={Style.user}>
-                    <div className={Style.avatar}></div>
-                    <div className={Style.name}>Test Chat</div>
-                    <div className={Style.active}></div>
-                </div>
+                {users &&
+                    users.map(
+                        (user: UserInterface): JSX.Element => {
+                            const { id, fullName, avatar } = user;
+                            const urlAvatar =
+                                avatar && avatar.length !== 0
+                                    ? avatar
+                                    : 'https://picsum.photos/200/300';
+
+                            if (id && id !== idUser) {
+                                return (
+                                    <div className={Style.user} key={id}>
+                                        <div
+                                            className={Style.avatar}
+                                            style={{
+                                                backgroundImage: `url(${urlAvatar})`,
+                                            }}></div>
+                                        <div className={Style.name}>
+                                            {fullName}
+                                        </div>
+                                        <div className={Style.active}></div>
+                                    </div>
+                                );
+                            }
+                        },
+                    )}
             </div>
         </div>
     );
