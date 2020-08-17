@@ -16,7 +16,7 @@ const User: FunctionComponent<Props> = (props: Props) => {
     const urlAvatar: string =
         avatar && avatar.length !== 0
             ? avatar
-            : 'https://picsum.photos/200/300';
+            : 'https://picsum.photos/100/100';
 
     // Handle Event
     const handleClickLougout = (): void => logout();
