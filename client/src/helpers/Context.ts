@@ -1,6 +1,9 @@
-import * as React from 'react';
+import React, { Context } from 'react';
 
-const Context = React.createContext(null);
+// Interface
+import { ContextInterface } from './Interface';
+
+const Context: Context<ContextInterface> = React.createContext(null);
 
 export const { Provider } = Context;
 export default Context;
