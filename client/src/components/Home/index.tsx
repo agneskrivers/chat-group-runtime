@@ -36,12 +36,15 @@ const Home: FunctionComponent = () => {
 
     // Effect
     useEffect(() => {
-        Websocket.send(
-            JSON.stringify({
-                type: 'online',
-                data: { id, user, fullName, avatar },
-            }),
-        );
+        Websocket.onopen = () => {
+            console.log('Websocket is connecting!');
+            Websocket.send(
+                JSON.stringify({
+                    type: 'online',
+                    data: { id, user, fullName, avatar },
+                }),
+            );
+        };
     }, [id]);
     useEffect(() => {
         return () => {
