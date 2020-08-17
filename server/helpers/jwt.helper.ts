@@ -1,27 +1,16 @@
 import jwt from 'jsonwebtoken';
 
-interface UserInterface {
-    id: string;
-    fullName: string;
-    user: string;
-    avatar: string;
-    isAdmin: boolean;
-}
-
-interface generateTokeInterface {
-    (user: UserInterface, secretSignature: string, tokenLife: number): Promise<
-        string
-    >;
-}
-
-interface verifyTokenInterface {
-    (token: string, secretKey: string): Promise<object>;
-}
+// Helper
+import {
+    UserInterface,
+    generateTokeInterface,
+    verifyTokenInterface,
+} from '../helpers/interface';
 
 export const generateToken: generateTokeInterface = (
-    user,
-    secretSignature,
-    tokenLife,
+    user: UserInterface,
+    secretSignature: string,
+    tokenLife: number,
 ) => {
     return new Promise((resolve, reject) => {
         const userData: UserInterface = {
@@ -50,7 +39,10 @@ export const generateToken: generateTokeInterface = (
     });
 };
 
-export const verifyToken: verifyTokenInterface = (token, secretKey) => {
+export const verifyToken: verifyTokenInterface = (
+    token: string,
+    secretKey: string,
+) => {
     return new Promise((resolve, reject) => {
         jwt.verify(token, secretKey, (error, decoded) => {
             if (error) return reject(error);
