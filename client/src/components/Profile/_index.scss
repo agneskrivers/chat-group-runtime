@@ -1,0 +1,77 @@
+@import '../../scss/style';
+
+.profile {
+    @include box(100%);
+    @include flex(center, center, column);
+}
+
+.avatar {
+    @include box(10rem);
+    margin: 2rem;
+    border-radius: 50%;
+
+    background-position: center;
+    background-size: cover;
+}
+
+.input {
+    padding: 0.5rem 3rem;
+    margin: 1rem;
+    box-shadow: 0 0 1px;
+
+    border: 1px solid var(--color-star-command-blue);
+    border-radius: 9px;
+
+
+    color: var(--color-dark-cornflower-blue);
+
+    font-size: 1.8rem;
+    font-weight: bold;
+
+    transition: all .3s;
+
+    &:focus {
+        outline: none;
+        box-shadow: 0 0 3px;
+    }
+
+    &::placeholder {
+        color: var(--color-navy-blue);
+        font-weight: bold;
+    }
+}
+
+.buttonDiv {
+    width: 20%;
+    display: flex;
+    justify-content: center;
+}
+
+.button {
+    width: 40%;
+    margin: 2rem 1rem;
+    padding: 1rem 2rem;
+
+    border: 1px solid var(--color-star-command-blue);
+    border-radius: 30px;
+
+    color: var(--color-powder-blue);
+    background-color: var(--color-star-command-blue);
+
+    font-size: 1.8rem;
+    font-weight: bold;
+
+    cursor: pointer;
+    transition: all .4s;
+
+    &:hover {
+        color: var(--color-dark-cornflower-blue);
+        background-color: var(--color-navy-blue);
+        box-shadow: 0 0 2px;
+        border-color: var(--color-navy-blue);
+    }
+
+    &:focus {
+        outline: none;
+    }
+}
