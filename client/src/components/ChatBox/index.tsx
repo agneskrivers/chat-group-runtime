@@ -13,21 +13,17 @@ import ChatText from '../ChatText/index';
 // Style
 import Style from './_index.scss';
 
-interface ChatTextInterface {
-    text: string;
-    fullName: string;
-    id: string;
-    avatar: string;
-}
+// Interface
+import { ChatTextInterface } from '../../helpers/Interface';
 interface Props {
     data: ChatTextInterface[];
-    idUser: string;
+    idAdmin: string;
     handleSendChatText: (text: string) => void;
 }
 
 const ChatBox: FunctionComponent<Props> = (props: Props) => {
     // Props
-    const { data, idUser, handleSendChatText } = props;
+    const { data, idAdmin, handleSendChatText } = props;
 
     // State
     const [active, setActive] = useState(null);
@@ -76,11 +72,11 @@ const ChatBox: FunctionComponent<Props> = (props: Props) => {
             <div className={Style.chat}>
                 {data &&
                     data.map((chat: ChatTextInterface) => {
-                        const { id, text, fullName, avatar } = chat;
+                        const { id, text, fullName, avatar, idUser } = chat;
                         const urlAvatar =
-                            avatar.length !== 0
+                            avatar && avatar.length !== 0
                                 ? avatar
-                                : 'https://picsum.photos/200/300';
+                                : 'https://picsum.photos/100/100';
 
                         return (
                             <ChatText
@@ -88,7 +84,7 @@ const ChatBox: FunctionComponent<Props> = (props: Props) => {
                                 text={text}
                                 avatar={urlAvatar}
                                 fullName={fullName}
-                                me={id === idUser ? true : false}
+                                me={idAdmin === idUser ? true : false}
                             />
                         );
                     })}
