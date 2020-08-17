@@ -5,7 +5,7 @@ import { postAvatar } from '../controllers/profile.controller';
 
 const router = Router();
 
-const upload: Multer = multer({ dest: '/upload' });
+const upload: Multer = multer({ dest: '/tmp/upload' });
 
 router.post('/', upload.single('avatar'), postAvatar);
 
