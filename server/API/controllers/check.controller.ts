@@ -1,6 +1,8 @@
 import express, { Request, Response } from 'express';
 
+// Helper
 import { verifyToken } from '../../helpers/jwt.helper';
+import { UserInterface } from '../../helpers/interface';
 
 export const checkToken = async (
     req: Request,
@@ -15,7 +17,7 @@ export const checkToken = async (
                 process.env.ACCESS_TOKEN_SECRET,
             );
 
-            res.json({ token: true, data: decoded });
+            res.json({ token: true, data: decoded as UserInterface });
         } catch (error) {
             res.json({ token: false });
         }
