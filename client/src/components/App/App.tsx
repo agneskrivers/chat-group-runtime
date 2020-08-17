@@ -11,11 +11,10 @@ import FetchAPI from '../../helpers/fetch';
 import Login from '../Login/index';
 import Signup from '../Signup/index';
 import Home from '../Home/index';
+import Profile from '../Profile/index';
 
-interface SignupInterface {
-    user: string;
-    pass: string;
-}
+// Interface
+import { UserInterface, UpdateUserInterface } from '../../helpers/Interface';
 
 const App: FunctionComponent = () => {
     // State
@@ -26,9 +25,9 @@ const App: FunctionComponent = () => {
 
     // Use Effect
     useEffect(() => {
-        const token = localStorage.getItem('token');
+        const token: string = localStorage.getItem('token');
 
-        fetch('http://localhost:9000/api/check', {
+        fetch('/api/check', {
             method: 'GEt',
             headers: {
                 'access-token': token,
@@ -55,7 +54,7 @@ const App: FunctionComponent = () => {
         pass: string,
         fullName: string,
     ): Promise<void> => {
-        const url = 'http://localhost:9000/api/signup';
+        const url = '/api/signup';
         const fetchData = await FetchAPI(url, user, pass, fullName);
 
         const { signup } = fetchData;
@@ -75,7 +74,7 @@ const App: FunctionComponent = () => {
         pass: string,
         keep: boolean,
     ): Promise<void> => {
-        const url = 'http://localhost:9000/api/login';
+        const url = '/api/login';
         const fetchData = await FetchAPI(url, user, pass, null, keep);
 
         const { login } = fetchData;
@@ -100,6 +99,37 @@ const App: FunctionComponent = () => {
         localStorage.removeItem('token');
     };
 
+    // Handle Fetch Avatar
+    const handleFetchAvatar = (data: FormData): void => {
+        fetch('/api/profile', {
+            method: 'POST',
+            body: data,
+        })
+            .then(res => res.json())
+            .then((result: UpdateUserInterface) => {
+                const { profile, fullName, avatar } = result;
+
+                let newUser: UserInterface;
+
+                if (profile) {
+                    newUser = {
+                        ...user,
+                        fullName: fullName,
+                        avatar: avatar,
+                    };
+                } else {
+                    newUser = {
+                        ...user,
+                        fullName: fullName,
+                    };
+                }
+
+                setUser(() => newUser);
+
+                localStorage.removeItem('token');
+            });
+    };
+
     return (
         <Provider
             value={{
@@ -108,6 +138,17 @@ const App: FunctionComponent = () => {
             }}>
             <Router>
                 <Switch>
+                    <Route path='/profile'>
+                        {user && (
+                            <Profile
+                                avatar={user.avatar}
+                                fullName={user.fullName}
+                                user={user.user}
+                                id={user.id}
+                                handleFetchAvatar={handleFetchAvatar}
+                            />
+                        )}
+                    </Route>
                     <Route path='/signup'>
                         <Signup
                             handleSignup={handleSignup}
