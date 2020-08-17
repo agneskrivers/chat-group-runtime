@@ -1,23 +1,5 @@
-interface ResponseDataInterface {
-    signup?: boolean;
-    login?: boolean;
-    message?: string;
-    token?: string;
-    data?: {
-        id: string;
-        fullName: string;
-        user: string;
-        avatar: string;
-        isAdmin: boolean;
-    };
-}
-
-interface BodyDataInterface {
-    user: string;
-    pass: string;
-    fullName?: string;
-    keep?: boolean;
-}
+// Interface
+import { ResponseDataInterface, BodyDataInterface } from './Interface';
 
 export default async function FetchAPI(
     url: string,
