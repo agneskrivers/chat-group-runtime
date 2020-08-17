@@ -3,20 +3,17 @@ import React, { FunctionComponent } from 'react';
 // Style
 import Style from './_index.scss';
 
-interface ChatTextProps {
+interface Props {
     text: string;
     avatar: string;
     fullName: string;
     me: boolean;
 }
 
-const ChatText: FunctionComponent<ChatTextProps> = (props: ChatTextProps) => {
+const ChatText: FunctionComponent<Props> = (props: Props) => {
     const { text, avatar, fullName, me } = props;
-    let avatarUrl = 'https://picsum.photos/200/300';
-
-    if (avatar.length !== 0) {
-        avatarUrl = avatar;
-    }
+    const avatarUrl: string =
+        avatar.length !== 0 ? avatar : 'https://picsum.photos/100/100';
 
     return (
         <div className={`${Style.chat} ${me ? Style.me : ''}`}>
