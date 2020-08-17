@@ -6,14 +6,11 @@ import SearchSVG from '../SVGs/Search/index';
 // Style
 import Style from './_index.scss';
 
+// Interface
+import { UserOnline } from '../../helpers/Interface';
 interface Props {
-    users: UserInterface[];
+    users: UserOnline[];
     idUser: string;
-}
-interface UserInterface {
-    id: string;
-    avatar: string;
-    fullName: string;
 }
 
 const Online: FunctionComponent<Props> = (props: Props) => {
@@ -32,12 +29,12 @@ const Online: FunctionComponent<Props> = (props: Props) => {
             <div className={Style.users}>
                 {users &&
                     users.map(
-                        (user: UserInterface): JSX.Element => {
+                        (user: UserOnline): JSX.Element => {
                             const { id, fullName, avatar } = user;
-                            const urlAvatar =
+                            const urlAvatar: string =
                                 avatar && avatar.length !== 0
                                     ? avatar
-                                    : 'https://picsum.photos/200/300';
+                                    : 'https://picsum.photos/100/100';
 
                             if (id && id !== idUser) {
                                 return (
