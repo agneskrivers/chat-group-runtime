@@ -1,11 +1,15 @@
 import express, { Request, Response } from 'express';
 import { compare } from 'bcrypt';
 
+// Model
 import Users from '../../models/Users';
+
+// Helper
 import { generateToken } from '../../helpers/jwt.helper';
+import { AuthencationInterface, UserInterface } from '../../helpers/interface';
 
 export const postLogin = (req: Request, res: Response): void => {
-    const { user, pass, keep } = req.body;
+    const { user, pass, keep } = req.body as AuthencationInterface;
 
     const tokenLife: number = keep ? 1000 * 60 * 60 * 24 : 1000 * 60 * 60;
 
@@ -33,7 +37,7 @@ export const postLogin = (req: Request, res: Response): void => {
                 return;
             }
 
-            const userData = {
+            const userData: UserInterface = {
                 id: userDB.id,
                 fullName: userDB.fullName,
                 avatar: userDB.avatar,

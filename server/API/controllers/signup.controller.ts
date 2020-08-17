@@ -1,7 +1,11 @@
 import { Request, Response } from 'express';
 import { genSalt, hash } from 'bcrypt';
 
+// Model
 import Users from '../../models/Users';
+
+// Helper
+import { AuthencationInterface } from '../../helpers/interface';
 
 const saltRound: number = parseInt(process.env.SALT as string);
 
@@ -9,7 +13,8 @@ export const postSignup = async (
     req: Request,
     res: Response,
 ): Promise<void> => {
-    const { fullName, user, pass } = req.body;
+    // Request Body
+    const { fullName, user, pass } = req.body as AuthencationInterface;
 
     const checkUser = await Users.find({ user: user });
 
